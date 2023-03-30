@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+</head>
+<body id="bg" style="background-image: url('{%static "img/background.png"%}');">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Infinity
+      </a>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Холбоо барих</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Бидний тухай</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login">Нэвтрэх</a>
+        </li>
+      </ul>
+    </div>
+    <div class="button">
+      <p class="text">Тавтай морил кк</p>
+      <a href="signup">
+      <button type="button" class="btn btn-primary btn-lg" >Бүртгүүлэх</button>
+      </a>
+    </div> 
+  </nav>
+</body>
+</html>
