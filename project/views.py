@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .forms import CreateProjectForm
+from .models import Project
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -38,7 +39,14 @@ def createProject(request):
 # view project
 @login_required(login_url='login') 
 def viewProject(request):
-      pass
+      
+      current_user = request.user.id
+      project = Project.models.all().filter(user=current_user)
+      
+      context = {'project': project}
+
+      return render(request, 'view-project.html', context=context)
+
 
 #register
 def register(request):   
@@ -56,6 +64,7 @@ def register(request):
         return redirect('login')
   return render(request, 'signup.html')
 
+
 #login
 def LoginPage(request):  
   if request.method=='POST': 
@@ -69,6 +78,7 @@ def LoginPage(request):
           return HttpResponse("Хэрэглэгчийн нэр эсвэл нууц үг буруу байна!!!")
 
   return render(request, 'login.html')  
+
 
 #logout
 def Logout(request): 
