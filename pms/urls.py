@@ -26,6 +26,6 @@ urlpatterns = [
     path('create-Project', views.createProject, name='create-Project'),
     path('signup/', views.register, name="register"), 
     path('login/', views.LoginPage, name="login"), 
-    path('logout', views.Logout, name='logout'),
-    path('viewProject', views.viewProject, name='viewProject' )
+    path('logout/', views.Logout, name='logout'),
+    path('viewProject/', views.viewProject, name='viewProject' )
 ]

@@ -56,6 +56,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+LOGIN_URL = 'login',
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
 
 ROOT_URLCONF = 'pms.urls'
 

@@ -30,7 +30,7 @@ def createProject(request):
             project.user = request.user
             project.save()
 
-            return redirect('home')
+            return redirect('viewProject')
         
     context = {'form':form}
     return render(request, 'project.html', context=context)
@@ -41,7 +41,7 @@ def createProject(request):
 def viewProject(request):
       
       current_user = request.user.id
-      project = Project.models.all().filter(user=current_user)
+      project = Project.objects.all().filter(user=current_user)
       
       context = {'project': project}
 
