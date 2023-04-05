@@ -18,14 +18,17 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from project import views
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('', include('project.urls')), 
     path('admin/', admin.site.urls),
     path("home/", views.home, name='home'), 
-    path('create-Project', views.createProject, name='create-Project'),
+    path('createProject/', views.createProject, name='createProject'),
     path('signup/', views.register, name="register"), 
     path('login/', views.LoginPage, name="login"), 
     path('logout/', views.Logout, name='logout'),
-    path('viewProject/', views.viewProject, name='viewProject' )
+    path('viewProject/', views.viewProject, name='viewProject' ),
+    path('updateProject/<str:pk>/', views.updateProject, name="updateProject"),
+    path('deleteProject/<str:pk>/', views.deleteProject, name='deleteProject'),
 ]

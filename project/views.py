@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -48,6 +49,42 @@ def viewProject(request):
       return render(request, 'view-project.html', context=context)
 
 
+# update project
+@login_required(login_url='login')
+def updateProject(request, pk):
+
+      project = Project.objects.get(id=pk)
+
+      form = CreateProjectForm(instance=project)
+
+      if request.method == 'POST':
+          form = CreateProjectForm(request.POST, instance=project)
+
+          if form.is_valid():
+              
+              form.save()
+              messages.success(request, "Амжилттай шинчлэгдлээ")
+              return redirect('viewProject')
+
+      context = {'form':form}
+
+      return render(request, 'update-project.html', context=context)
+
+# delete project 
+
+login_required(login_url='login')
+def deleteProject(request, pk):
+    
+    project = Project.objects.get(id=pk)
+
+    if request.method == 'POST':
+        project.delete()
+
+        return redirect('viewProject')
+
+    return render(request, 'delete-project.html')
+
+
 #register
 def register(request):   
   if request.method =='POST':  
@@ -75,7 +112,8 @@ def LoginPage(request):
           login(request, user) 
           return redirect('home') 
       else:  
-          return HttpResponse("Хэрэглэгчийн нэр эсвэл нууц үг буруу байна!!!")
+          messages.error(request, "Нэвтрэх нэр, нууц үг буруу байна")
+
 
   return render(request, 'login.html')  
 

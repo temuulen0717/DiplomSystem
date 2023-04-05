@@ -1,0 +1,23 @@
+.click{
+    color: black;
+    margin-left: 10px;
+}
+.log{
+    display: flex;
+}
+
+.nav-item{
+    display: flex;
+    flex-direction: row;
+    margin: 2px;
+    
+}
+.container{
+    position: absolute;
+    top: 9%;
+    left: 27%;
+}
+#delete{
+    position: absolute;
+    margin-right: 10px;
+}

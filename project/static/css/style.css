@@ -1,23 +1,230 @@
 #bg{
     background-repeat: no-repeat;
-    background-size: 1600px 800px;
-    background-position: top;
+    background-size: 700px 600px;
+    bottom:100px;
+    background-position: right;
     background-attachment: fixed;
 }
+li{ 
+    text-decoration: none;
+    list-style-type: none; 
+    display: block; 
+    margin-left: 10px;
+    margin-right: 10px;  
+} 
+li a { 
+    color: black; 
+    text-decoration: none;
+} 
+a{
+    text-decoration: none;
+    color: white;
+}
+ul { 
+    display: flex; 
+    flex-direction: row;  
+} 
+a:hover{ 
+    color: #626262;  
+} 
+form .btn{ 
+    border-color:#7456c0;   
+    color: #7456c0; 
 
-.nav-item{
-    color: black;
-    font-size: 20px;
+} 
+form .btn:hover{ 
+    color: #ffff; 
+    background-color: #7456c0; 
+    border-color: #7456c0;
+}  
+form .btn:active{ 
+    background-color: #7456c0;
 }
-.btn{
-    border-width: 7px;
-    border-radius: 15px;
+.Top{ 
+    height:45px;  
+    background-color: #ffffff;   
+    border-bottom: 1px solid #9c9c9c;  
+    z-index: 1; 
+    position: fixed; 
+    top:0; 
+    width: 100%; 
+}    
+nav form{   
+    position: absolute; 
+    right:30%; 
+             
 }
-.button{
-    margin-top: 350px;
-    margin-left: 400px;
+nav .icons {   
+    display: inline-block; 
+    position: absolute; 
+    top:2px;  
+    right: 15px; 
+}    
+.icons .btn{
+    margin-left: 10px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: black;
 }
-
+.Context h2{ 
+    font-family: 'Montserrat', sans-serif;  
+    position: absolute;     
+    top:20%; 
+    left:15%; 
+    width: 30%; 
+    text-align: left;     
+    color:#7456c0; 
+} 
+.Context p{ 
+    color: #626262; 
+    font-family: 'Montserrat', sans-serif;  
+    position: absolute; 
+    top:25%; 
+    left:15%; 
+    width: 30%; 
+    text-align: left;   
+}
+.img1{    
+    position: absolute; 
+    top: 8%; 
+    right:13%;  
+    width:600px; 
+    height:350px; 
+} 
+.Context{ 
+    display: inline-block;  
+} 
+.Dashboard h3{ 
+    position: absolute; 
+    top:55.5%;    
+    right:55%;  
+    font-weight: 300;
+} 
+.Dashboard .bi{  
+    color: #7456c0; 
+    position: absolute; 
+    top: 56%; 
+    right:64%; 
+} 
+#cards{  
+    position: absolute; 
+    top: 65%; 
+    width:55%;  
+    right:12%; 
+} 
+#cards .col{ 
+    width:300px;
+}  
+.card-body .a{  
+    background-color: #7456c0;
+}
+#dropDownMenu{ 
+    display: none;
+} 
+.dropdown-menu{ 
+    position: relative; 
+    top:40px; 
+    right: 2px;
+} 
+.leftbar{   
+    position: relative; 
+    left:0;    
+    top:55%;  
+    width:30%;  
+    height: 100%;      
+    overflow: auto; 
+    background-color: red;
+}  
+.leftbar ul{ 
+    display:flex; 
+    flex-direction: column;   
+} 
+.leftbar li{ 
+    display: block;  
+    margin:5px;  
+    margin-left:35%; 
+    padding-left:5%; 
+    padding-top:2%; 
+    width:60%;  
+    height: 40px; 
+    border-radius: 5px;
+} 
+.leftbar li:hover{ 
+    background-color: rgb(231, 224, 237);   
+    transition: background-color 0.2s;
+}  
+#divider:hover{  
+    background-color: #ffffff; 
+} 
+#divider hr{  
+    color:black; 
+} 
+.leftbar .bi{ 
+    color:silver; 
+    margin-right:10px;   
+    margin-bottom: 3px;
+}
 .text{
-    font-size: 35px;
+    margin-top: 200px;
+    margin-left: 200px;
+}
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }

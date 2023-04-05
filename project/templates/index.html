@@ -1,37 +1,32 @@
 <html>
-<head>
-  <title>{% block title %}{% endblock %}</title>
-  {% load bootstrap5 %}
-  {% bootstrap_css %}
-  {% bootstrap_javascript %}
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
-</head>
-<body id="bg" style="background-image: url('{%static "img/background.png"%}');">
-  <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        Infinity
-      </a>
-      <ul class="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Холбоо барих</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Бидний тухай</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login">Нэвтрэх</a>
-        </li>
-      </ul>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+  </head>
+  <body id="bg" style="background-image: url('{%static "img/index.jpg"%}');">
+    <div class="Top">   
+      <nav class="navbar">   
+       <div class="container-fluid">    
+         <ul>    
+            <li><a href="#">Why infinity?</a></li>   
+            <li><a href="#">About</a></li>   
+            <li><a href="#">Contact</a></li>   
+            <li><a href="#">Features</a></li> 
+         </ul>  
+         </div> 
+         <div class="icons">
+          <div class="btn-group"><li><a href="{% url 'login' %}">Login</a></li></div>
+          <button type="button" class="btn btn-primary"><a href="{% url 'register'%}">Get started</a></button>
+         </div>
+      </nav>  
+
     </div>
-    <div class="button">
-      <p class="text">Тавтай морил кк</p>
-      <a href="signup">
-      <button type="button" class="btn btn-primary btn-lg" >Бүртгүүлэх</button>
-      </a>
-    </div> 
-  </nav>
-</body>
+    <div class="text">
+      <h1 style="text-align:center; width:45%">Remove barriers, find clarity, exceed goals</h1>
+      <br>
+      <h6 style="text-align:center; width:35%; margin-left:70px">Anything is possible with the most powerful work management software at your fingertips</h6>
+      <button class="glow-on-hover " type="button" ><a href="{% url 'register' %}">Get Started</a></button>
+    </div>  
+  </body>
 </html>

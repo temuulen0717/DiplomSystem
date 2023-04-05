@@ -10,7 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import os
+import os, inspect
+import django_dyn_dt
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,10 +43,15 @@ INSTALLED_APPS = [
     'bootstrap5',
     'project',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'compressor',
+    'django_dyn_dt',
+    'crispy_bootstrap5',
+   # 'django.contrib.messages',
+   
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware'
 ]
 LOGIN_URL = 'login',
 LOGIN_REDIRECT_URL = 'home'
@@ -63,10 +71,12 @@ LOGOUT_REDIRECT_URL = 'login'
 
 ROOT_URLCONF = 'pms.urls'
 
+TEMPLATE_DIR_DATATB = os.path.join(BASE_DIR, "django_dyn_dt/templates")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "project/templates")],
+        'DIRS': [os.path.join(BASE_DIR, "project/templates"), TEMPLATE_DIR_DATATB],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,16 +134,32 @@ USE_I18N = True
 
 USE_TZ = True
 
+STATIC_URL = '/static/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+DYN_DB_PKG_ROOT = os.path.dirname( inspect.getfile( django_dyn_dt))
 
-STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "project/static")
+    os.path.join(DYN_DB_PKG_ROOT, "templates/static"),
+    os.path.join(BASE_DIR, "project/static"),
+   
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DYNAMIC_DATATB = {
+    'books': "project.models.Book",
+}
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
+STATICFILES_FINDERS =('django.contrib.staticfiles.finders.FileSystemFinder',  
+                      'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+                      'compressor.finders.CompressorFinder',
+) 
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
