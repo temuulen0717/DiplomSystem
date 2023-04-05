@@ -1,30 +1,237 @@
-{% load static%}
+{% load static %}
 {% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/task.css' %}"/>
+<link rel="stylesheet" href="{% static 'js/task.js' %}"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-<html>
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    </head>
-    <body>
-        <div>
-            <div>
-                {%block header%}
-                {%endblock%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <div class="header">
+      <!-- <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        > 
+          <span class="navbar-toggler-icon"></span></button -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100"
+            height="60"
+            fill="currentColor"
+            class="bi bi-infinity"
+            viewBox="0 0 16 16"
+            style="color: #74ebd5;  /* fallback for old browsers */
+            color: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
+            color: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */"
+          >
+            <path
+              d="M5.68 5.792 7.345 7.75 5.681 9.708a2.75 2.75 0 1 1 0-3.916ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015L8 6.978Zm.656.772 1.663-1.958a2.75 2.75 0 1 1 0 3.916L8.656 7.75Z"
+            />
+          </svg>
+      </div>
+      <div class="log">
+        <form class="d-flex mt-3" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="icons">   
+        <button class="btn btn-light">
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16"> 
+            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+           </svg> 
+        </button> 
+        <div class="btn-group dropleft">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+             </svg>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: absolute; top:30px; right: 100px;">
+            <a class="dropdown-item" href="#">Account</a>
+            <a class="dropdown-item" href="#">Settings</a> 
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+          </div>     
+      </div> 
+    </div>
+  </nav>
+
+    <div class="container" style="margin-top: 100px; left:25%" id="tasks">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+						<h2>Manage <b>Task</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+					</div>
+                </div>
             </div>
-            <div>
-                {%block content%}
-                {%endblock%}
-            </div>
-            <div>
-                {%block body%}
-                {%endblock%}
-            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+                        <th>Task</th>
+                        <th>Start date</th>
+						<th>End date</th>
+                        <th>Status</th>
+                        <th>File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in task%}
+                    <tr>
+						<td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+						</td>
+                        <td>{{i.task_name}}</td>
+                        <td>{{i.task_startdate}}</td>
+						<td>{{i.task_enddate}}</td>
+                        <td>{{i.task_status}}</td>
+                        <td>{{i.task_file}}</td>
+                        <td>
+                            <a href="#editEmployeeModal-{{forloop.counter}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="#deleteEmployeeModal-{{forloop.counter}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
         </div>
-    </body>
+    </div>
+	<!-- Add Modal HTML -->
+	<div id="addEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="{% url 'addTask' %}" method="POST">
+                    {% csrf_token%}
+					<div class="modal-header">						
+						<h4 class="modal-title">Add Employee</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Task</label>
+							<input name="task_name" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Start date</label>
+							<input name="task_startdate" type="date" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>End date</label>
+							<input name="task_enddate" type="date" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Status</label>
+							<input name="task_status" type="selection" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>File</label>
+							<input name="task_file" type="text" class="form-control" required>
+						</div>						
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-success" value="Add">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    {% for i in task %}
+	<!-- Edit Modal HTML -->
+	<div id="editEmployeeModal-{{forloop.counter}}" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/updateTask/{{i.id}}" method="POST"> 
+                    {% csrf_token%}
+					<div class="modal-header">						
+						<h4 class="modal-title">Edit Task</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+                        <div class="form-group">
+							<label>Task</label>
+							<input name="task_name" value="{{i.task_name}}" type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Start date</label>
+							<input name="task_startdate" value="{{i.task_startdate}}" type="date" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>End date</label>
+							<input name="task_enddate" value="{{i.task_enddate}}" type="date" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Status</label>
+							<input name="task_status" value="{{i.task_status}}" type="selectAll" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>File</label>
+							<input name="task_file" value="{{i.task_file}}" type="text" class="form-control" required>
+						</div>				
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="submit" class="btn btn-info" value="Update">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    {%endfor%}
+
+    {% for i in task %}
+	<!-- Delete Modal HTML -->
+	<div id="deleteEmployeeModal-{{forloop.counter}}" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Delete Employee</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<p>Are you sure you want to delete these Records?</p>
+						<p class="text-warning"><small>This action cannot be undone.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<a href="/deleteTask/{{i.id}}" type="submit" class="btn btn-danger" value="Delete">Delete</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    {% endfor %}
 </html>

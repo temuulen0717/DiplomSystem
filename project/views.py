@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .forms import CreateProjectForm
-from .models import Project
+from .models import Project, Task
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -122,3 +122,86 @@ def LoginPage(request):
 def Logout(request): 
   logout(request) 
   return redirect('login')
+
+
+  #task
+def taskView(request):
+
+    task = Task.objects.all()
+    context = {
+        'task': task,
+    } 
+
+    return render(request, 'task/task.html', context=context)
+
+#add task 
+def addTask(request):
+
+    if request.method == "POST":
+        task_name = request.POST.get('task_name')
+        task_startdate = request.POST.get('task_startdate')
+        task_enddate = request.POST.get('task_enddate')
+        task_status = request.POST.get('task_status')
+        task_file = request.POST.get('task_file')
+            
+        task = Task(
+            task_name = task_name,
+            task_startdate = task_startdate,
+            task_enddate = task_enddate,
+            task_status = task_status,
+            task_file = task_file 
+        )
+        task.save()
+        return redirect('task')
+
+    return render(request, 'task/task.html')
+
+
+
+#edit task 
+
+def editTask(request):
+    task = Task.objects.all()
+
+    context = {
+        'task': task,
+    }
+
+    return render(request, 'task/task.html', context)
+
+#update task
+
+def updateTask(request, id):
+
+    if request.method == "POST":
+        task_name = request.POST.get('task_name')
+        task_startdate = request.POST.get('task_startdate')
+        task_enddate = request.POST.get('task_enddate')
+        task_status = request.POST.get('task_status')
+        task_file = request.POST.get('task_file')
+
+        task = Task(
+            id = id,
+            task_name = task_name,
+            task_startdate = task_startdate,
+            task_enddate = task_enddate,
+            task_status = task_status,
+            task_file = task_file 
+        )
+        task.save()
+        return redirect('task')
+
+    return redirect(request, 'task/task.html')
+
+
+#delete Task
+def deleteTask(request, id):
+    
+    task = Task.objects.filter(id = id) 
+    
+    context = {
+        'task': task,
+    }
+
+    task.delete()
+    return redirect('task')

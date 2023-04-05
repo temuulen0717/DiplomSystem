@@ -22,3 +22,15 @@ class Project(models.Model):
 class Book(models.Model):
 
     task_name = models.CharField(max_length=100)
+ 
+class Task(models.Model):
+    NEW = 'NW'
+    IN_PLANNED = 'IP'
+    COMPLATED = 'CMP'
+    project_status_choice = [(NEW, 'New'), (IN_PLANNED, 'In planned'), (COMPLATED, 'Complated')]
+
+    task_name = models.CharField(max_length=100, null=True)
+    task_file = models.CharField(max_length=100 ,null=True)
+    task_startdate = models.DateField(null=True)
+    task_enddate = models.DateField(null=True)
+    task_status = models.CharField(max_length=100, choices=project_status_choice, default=NEW)
