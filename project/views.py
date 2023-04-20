@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .forms import CreateProjectForm
+from .forms import CreateProjectForm, TaskForm
 from .models import Project, Task
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -53,7 +53,7 @@ def viewProject(request):
 @login_required(login_url='login')
 def updateProject(request, pk):
 
-      project = Project.objects.get(id=pk)
+      project = Project.objects.get(pro_id=pk)
 
       form = CreateProjectForm(instance=project)
 
@@ -75,7 +75,7 @@ def updateProject(request, pk):
 login_required(login_url='login')
 def deleteProject(request, pk):
     
-    project = Project.objects.get(id=pk)
+    project = Project.objects.get(pro_id=pk)
 
     if request.method == 'POST':
         project.delete()
@@ -125,13 +125,11 @@ def Logout(request):
 
 
   #task
-def taskView(request):
+def taskView(request, id):
 
-    task = Task.objects.all()
-    context = {
-        'task': task,
-    } 
-
+    proj = Project.objects.get(pro_id = id)
+    tasks = Task.objects.filter(project = proj)
+    context = {'cat': proj, 'task': tasks }
     return render(request, 'task/task.html', context=context)
 
 #add task 
@@ -205,3 +203,11 @@ def deleteTask(request, id):
 
     task.delete()
     return redirect('task')
+# testuud
+def viewTask(request, id):
+    proj = Project.objects.get(pro_id = id)
+    tasks = Task.objects.filter(project = proj)
+    context = {'cat': proj, 'task': tasks }
+    return render(request, 'task_list.html', context=context)
+
+

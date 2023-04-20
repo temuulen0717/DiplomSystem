@@ -1,6 +1,6 @@
 # - create project 
 from django import forms
-from .models import Project
+from .models import Project, Task
 
 
 
@@ -11,3 +11,9 @@ class CreateProjectForm(forms.ModelForm):
         fields = "__all__"
         exclude = ['user',]
 
+class TaskForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = "__all__"
+        exclude = ['project']
