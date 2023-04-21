@@ -53,7 +53,7 @@ def viewProject(request):
 @login_required(login_url='login')
 def updateProject(request, pk):
 
-      project = Project.objects.get(id=pk)
+      project = Project.objects.get(pro_id=pk)
 
       form = CreateProjectForm(instance=project)
 
@@ -75,7 +75,7 @@ def updateProject(request, pk):
 login_required(login_url='login')
 def deleteProject(request, pk):
     
-    project = Project.objects.get(id=pk)
+    project = Project.objects.get(pro_id=pk)
 
     if request.method == 'POST':
         project.delete()
@@ -125,13 +125,10 @@ def Logout(request):
 
 
   #task
-def taskView(request):
-
-    task = Task.objects.all()
-    context = {
-        'task': task,
-    } 
-
+def taskView(request, id):
+    proj = Project.objects.get(pro_id = id)
+    tasks = Task.objects.filter(project = proj)
+    context = {'cat': proj, 'task': tasks }
     return render(request, 'task/task.html', context=context)
 
 #add task 

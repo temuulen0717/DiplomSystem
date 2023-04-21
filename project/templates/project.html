@@ -11,14 +11,7 @@
         <form method="POST" class="card p-3 mt-5" autocomplete="off">
             {% csrf_token %}
             <div class = "row">
-               <div class="col-6">
-                    {{form.project_name|as_crispy_field}}
-                </div>
-                <div class="col-6">
-                    {{form.project_code|as_crispy_field}}
-                </div>      
-                {{form.project_status|as_crispy_field}}
-                {{form.project_description|as_crispy_field}}
+              {{form|crispy}}
             </div>        
             <br>
             <input class= "btn btn-primary mt-3" type="submit" value="submit"/>

@@ -8,6 +8,7 @@ class Project(models.Model):
     COMPLATED = 'CMP'
     project_status_choice = [(NEW, 'New'), (IN_PLANNED, 'In planned'), (COMPLATED, 'Complated')]
 
+    pro_id = models.AutoField(primary_key=True)
     project_id = models.CharField(max_length=1000, null=True)
     category_id = models.CharField(max_length=1000, null=True)
     project_name = models.CharField(max_length=100, null=True)
@@ -34,3 +35,5 @@ class Task(models.Model):
     task_startdate = models.DateField(null=True)
     task_enddate = models.DateField(null=True)
     task_status = models.CharField(max_length=100, choices=project_status_choice, default=NEW)
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
