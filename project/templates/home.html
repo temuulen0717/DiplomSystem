@@ -22,28 +22,34 @@ a:hover{
 .left{   
     position: fixed; 
     left:0;    
-    top:17%;  
-    width:25%;  
+    top:15%;  
+    width:23%;  
     height: 100%;      
     overflow: auto; 
-    background-color: #ffffff;
+    background-color: #EEF1F4;    
 }  
-.left ul{ 
+.left ul{  
+    background-color: #fff; 
     display:flex; 
-    flex-direction: column;   
+    flex-direction: column;    
+    padding-bottom: 95%;   
+    padding-top:10%; 
+    border-radius:15px;  
+    margin-left:25px; 
+    margin-right:65px;    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  
 } 
 .left li{ 
-    display: block;  
-    margin:5px;  
-    margin-left:5%; 
-    padding-left:5%; 
+    display: felx;  
+    margin:5px;    
+    padding-left:20px; 
     padding-top:2%; 
-    width:65%;  
+    max-width:250px;  
     height: 40px; 
     border-radius: 5px;
 } 
 .left li:hover{ 
-    background-color: rgb(231, 224, 237);   
+    background-color: #ADD8E6;   
     transition: background-color 0.2s;
 }  
 #divider:hover{  
@@ -53,7 +59,7 @@ a:hover{
     color:black; 
 } 
 .left .bi{ 
-    color:silver; 
+    color:Light Black; 
     margin-right:10px;   
     margin-bottom: 3px;
 }
@@ -65,13 +71,40 @@ a:hover{
   position: relative; 
   top:40px; 
   right: 2px;
+}  
+.container-fluid{ 
+  background-color: #FDFDFE;   
+  height:70px;  
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+ }  
+.Top{    
+  z-index: 1; 
+  position: fixed; 
+  top:0; 
+  width: 100%;  
+}   
+nav form{     
+  position: absolute; 
+  right:20%;   
+  top:10px;               
 } 
-
-
+form .btn{ 
+  background-color: #ADD8E6;   
+  color: Light black; 
+}  
+form .btn:hover{ 
+  background-color:#fff;  
+  border-color: #ADD8E6; 
+  color: Light black; 
+}
+.icons{ 
+  position:absolute; 
+  right: 10px; 
+  top:10px; 
+}
 </style>
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="Top">
   <div class="container-fluid">
-    <div class="header">
     <!-- <button
         class="navbar-toggler"
         type="button"
@@ -94,45 +127,37 @@ a:hover{
           <path
             d="M5.68 5.792 7.345 7.75 5.681 9.708a2.75 2.75 0 1 1 0-3.916ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015L8 6.978Zm.656.772 1.663-1.958a2.75 2.75 0 1 1 0 3.916L8.656 7.75Z"
           />
-        </svg>
-    </div>
-    <div class="log">
-      <form class="d-flex mt-3" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-    <div class="icons">   
-      <button class="btn btn-light">
-         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16"> 
-          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-         </svg> 
-      </button> 
-      <div class="btn-group dropleft">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-           </svg>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="position: relative; top:40px; right: 2px;">
-          <a class="dropdown-item" href="#">Account</a>
-          <a class="dropdown-item" href="#">Settings</a> 
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-        </div>     
-    </div> 
-  </div>
+        </svg>   
+        <form class="d-flex" role="search"> 
+          <input class="form-control me-2" type="search" placeholder="Хайх" aria-label="Search">
+          <button class="btn" type="submit">Хайх</button>
+        </form>         
+        <div class="icons">   
+          <button class="btn btn-light">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16"> 
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+             </svg> 
+          </button> 
+          <div class="btn-group dropleft">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+               </svg>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Тохиргоо</a>
+              <a class="dropdown-item" href="#">Тусламж?</a> 
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Гарах</a>
+            </div>     
+        </div> 
+      </div>    
 </nav>
 {%endblock%}
 {% block body %}
   <div class="left">   
     <ul> 
-      <li style="background-color: rgb(231, 224, 237)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+      <li style="background-color: #ADD8E6"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
         <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
       </svg><a href="{% url 'home' %}">Home</a></li>   
       <li id="divider"><hr></li>

@@ -2,14 +2,10 @@
     color: black;
     margin-left: 10px;
 }
-.log{
-    display: flex;
-}
-
 .nav-item{
     display: flex;
     flex-direction: row;
-    margin: 2px;
+    margin: 2px; 
     
 }
 .container{
