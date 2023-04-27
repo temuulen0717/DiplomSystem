@@ -4,7 +4,8 @@
 {% block content %}
 
     {% autoescape off %}
-        {{ plot_div }}
+    {%include 'home.html' %}
+        {{ plot_div | safe}}        
     {% endautoescape %}
 
 {% endblock content %}

@@ -13,6 +13,12 @@ import pandas as pd
 from plotly.offline import plot
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.offline as pyo
+from dash import html
+import dash
+from django.db.models import Q
+
+
 
 # Create your views here.
 @login_required(login_url='login') 
@@ -49,7 +55,9 @@ def viewProject(request):
       
       current_user = request.user.id
       project = Project.objects.all().filter(user=current_user)
-      
+      if 'q' in request.GET:
+          q = request.GET['q']
+          project = Project.objects.filter(Q(project_name = q))
       context = {'project': project}
 
       return render(request, 'view-project.html', context=context)
@@ -236,6 +244,7 @@ def taskAdd(request, project_id):
 def Charts(request, id):
     proj = Project.objects.get(pro_id = id)
     tasks = Task.objects.filter(project = proj)
+    fig = go.Figure(data=go.Scatter(x=[1, 3, 2], y=[4,5,6]))
     projects_data = [
         {
             'Project': x.task_name,
@@ -246,20 +255,18 @@ def Charts(request, id):
     ]
     df = pd.DataFrame(projects_data)
     fig = px.timeline(
-        df, x_start="Start", x_end="Finish", y="Project", color="Task", width=1200, height=500
+        df, x_start="Start", x_end="Finish", y="Project", color="Task", width=1000, height=400
     )
     fig.update_layout(
-        margin=dict(l=200, t=200, b=20),
+        margin=dict(l=200, t=100, b=20),
         yaxis=dict(showgrid=True),
         xaxis=dict(showgrid=False),
-        )
-    
-   
 
+    )
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(width=0.2)
     gantt_plot = plot(fig, output_type="div")
-    context = {'plot_div': gantt_plot, 'cat': proj, 'task': tasks }
+    context = {'plot_div': gantt_plot, 'task': tasks }
     return render(request, 'gantt/index.html', context)
 
 
