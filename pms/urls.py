@@ -31,9 +31,13 @@ urlpatterns = [
     path('viewProject/', views.viewProject, name='viewProject' ),
     path('updateProject/<str:pk>/', views.updateProject, name="updateProject"),
     path('deleteProject/<str:pk>/', views.deleteProject, name='deleteProject'),
-    path('task/<str:id>', views.taskView, name='task'),
-    path('addTask/', views.addTask, name='addTask'),
+    path('project/<str:id>', views.taskView, name='project'),
+    path('addTask/<str:id>/add/', views.addTask, name='addTask'),
     path('editTask/', views.editTask, name='editTask'),
     path('updateTask/<str:id>', views.updateTask, name='updateTask'),
     path('deleteTask/<str:id>', views.deleteTask, name='deleteTask'), 
+    path('task/<str:id>/gantt', views.Charts, name='chart'),
+
+
+    path('<str:project_id>/invite', views.invite_user, name='invite')
 ]

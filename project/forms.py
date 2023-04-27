@@ -17,3 +17,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = "__all__"
         exclude = ['project']
+
+class InviteUserForm(forms.Form):
+
+    email = forms.EmailField()

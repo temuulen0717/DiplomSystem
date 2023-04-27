@@ -1,0 +1,8 @@
+{% block content %}
+  <h1>Invite User to {{ project.project_name }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send Invitation</button>
+  </form>
+{% endblock %}

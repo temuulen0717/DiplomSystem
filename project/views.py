@@ -2,11 +2,17 @@ from django.contrib import messages
 from django.contrib.auth.models import User 
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .forms import CreateProjectForm
-from .models import Project, Task
+from .forms import CreateProjectForm, TaskForm, InviteUserForm
+from .models import Project, Task, Chart, UserProfile
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse
+import pandas as pd
+from plotly.offline import plot
+import plotly.express as px
+import plotly.graph_objects as go
 
 # Create your views here.
 @login_required(login_url='login') 
@@ -132,8 +138,8 @@ def taskView(request, id):
     return render(request, 'task/task.html', context=context)
 
 #add task 
-def addTask(request):
-
+def addTask(request, id):
+    project = Project.objects.get(pro_id=id)
     if request.method == "POST":
         task_name = request.POST.get('task_name')
         task_startdate = request.POST.get('task_startdate')
@@ -148,8 +154,9 @@ def addTask(request):
             task_status = task_status,
             task_file = task_file 
         )
+        task.project = project
         task.save()
-        return redirect('task')
+        return redirect(reverse('project', args=[id]))
 
     return render(request, 'task/task.html')
 
@@ -186,7 +193,7 @@ def updateTask(request, id):
             task_file = task_file 
         )
         task.save()
-        return redirect('task')
+        return redirect('project')
 
     return redirect(request, 'task/task.html')
 
@@ -201,4 +208,80 @@ def deleteTask(request, id):
     }
 
     task.delete()
-    return redirect('task')
+    return redirect('project')
+
+
+#addTask test ---------------
+
+def taskAdd(request, project_id):
+    project = Project.objects.get(pro_id = project_id)
+    fform = TaskForm()
+ 
+    if request.method == 'POST':
+        fform = TaskForm(request.POST)
+
+        if fform.is_valid():
+            
+            task = fform.save(commit=False)
+            task.project = project
+            task.save()
+
+            return redirect(reverse('project', project_id=project.pro_id))
+        
+    context = {'fform':fform}
+    return render(request, 'task/addTask.html', context=context)
+
+
+
+def Charts(request, id):
+    proj = Project.objects.get(pro_id = id)
+    tasks = Task.objects.filter(project = proj)
+    projects_data = [
+        {
+            'Project': x.task_name,
+            'Start': x.task_startdate,
+            'Finish': x.task_enddate,
+            'Task': x.task_name
+        } for x in tasks
+    ]
+    df = pd.DataFrame(projects_data)
+    fig = px.timeline(
+        df, x_start="Start", x_end="Finish", y="Project", color="Task", width=1200, height=500
+    )
+    fig.update_layout(
+        margin=dict(l=200, t=200, b=20),
+        yaxis=dict(showgrid=True),
+        xaxis=dict(showgrid=False),
+        )
+    
+   
+
+    fig.update_yaxes(autorange="reversed")
+    fig.update_traces(width=0.2)
+    gantt_plot = plot(fig, output_type="div")
+    context = {'plot_div': gantt_plot, 'cat': proj, 'task': tasks }
+    return render(request, 'gantt/index.html', context)
+
+
+
+#invite user ----------------
+def invite_user(request, project_id):
+    project = Project.objects.get(pro_id=project_id)
+    if request.method == 'POST':
+        form = InviteUserForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                # create a new user account if the email address is not associated with an existing account
+                user = User.objects.create_user(email, email)
+                user.save()
+                profile = UserProfile(user=user)
+                profile.save()
+            project.users.add(user)
+            return redirect('project', project_id=project.pro_id)
+    else:
+        form = InviteUserForm()
+    return render(request, 'invite_user.html', {'form': form, 'project': project})
+

@@ -15,6 +15,75 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+	li{ 
+	  text-decoration: none;
+	  list-style-type: none; 
+	  display: block; 
+	  margin-left: 10px;
+	  margin-right: 10px;  
+  } 
+  li a { 
+	  color: black; 
+	  text-decoration: none;
+  } 
+  ul { 
+	  display: flex; 
+	  flex-direction: row;  
+  } 
+  a:hover{ 
+	  color: #626262;  
+  }
+  .left{   
+	  position: fixed; 
+	  left:0;    
+	  top:17%;  
+	  width:25%;  
+	  height: 100%;      
+	  overflow: auto; 
+	  background-color: #ffffff;
+  }  
+  .left ul{ 
+	  display:flex; 
+	  flex-direction: column;   
+  } 
+  .left li{ 
+	  display: block;  
+	  margin:5px;  
+	  margin-left:5%; 
+	  padding-left:5%; 
+	  padding-top:2%; 
+	  width:65%;  
+	  height: 40px; 
+	  border-radius: 5px;
+  } 
+  .left li:hover{ 
+	  background-color: rgb(231, 224, 237);   
+	  transition: background-color 0.2s;
+  }  
+  #divider:hover{  
+	  background-color: #ffffff; 
+  } 
+  #divider hr{  
+	  color:black; 
+  } 
+  .left .bi{ 
+	  color:silver; 
+	  margin-right:10px;   
+	  margin-bottom: 3px;
+  }
+  
+  #dropDownMenu{ 
+	display: none;
+  } 
+  .dropdown-menu{ 
+	position: relative; 
+	top:40px; 
+	right: 2px;
+  } 
+  
+  
+  </style>
 <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <div class="header">
@@ -75,7 +144,34 @@
     </div>
   </nav>
 
-    <div class="container" style="margin-top: 100px; left:25%" id="tasks">
+
+  <div class="left">   
+    <ul> 
+      <li style="background-color: rgb(231, 224, 237)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+      </svg><a href="{% url 'home' %}">Home</a></li>   
+      <li id="divider"><hr></li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg><a href="{% url 'createProject' %}">Төсөл үүсгэх</a></li>  
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+      </svg><a href="{% url 'viewProject' %}">Миний төслүүд</a></li>  
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-app" viewBox="0 0 16 16">
+        <path d="M11 2a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h6zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+      </svg><a href="#">Дашбоард</a></li>  
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+      </svg><a href="#">Domain lookup</a></li>  
+      <li><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-cloud-check" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+      </svg><a href="{% url 'logout' %}">Web scraping</a></li>   
+    </ul> 
+  </div>  
+
+    <div class="container" style="margin-top: 10px; margin-left:400px; left:35%" id="tasks">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -84,11 +180,14 @@
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+						<a href="{% url 'chart' id=1%}" class="btn btn-info" data-toggle="modal"><i class="material-icons"> </i> <span>Gantt</span></a>
+						<a href="{% url 'invite' project_id=1%}">Invite</a>
 					</div>
+					
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <table class="table table-s%triped table-hover">
                 <thead>
                     <tr>
 						<th>
@@ -132,7 +231,8 @@
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="{% url 'addTask' %}" method="POST">
+				
+				<form action="{% url 'addTask' id=1 %}" method="POST">
                     {% csrf_token%}
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Employee</h4>
@@ -152,8 +252,8 @@
 							<input name="task_enddate" type="date" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Status</label>
-							<input name="task_status" type="selection" class="form-control" required>
+							<label >Status</label>
+							<input name="task_status"  class="form-control" required>
 						</div>
                         <div class="form-group">
 							<label>File</label>
