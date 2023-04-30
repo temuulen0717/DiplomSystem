@@ -3,7 +3,7 @@
     background-size: 700px 600px;
     bottom:100px;
     background-position: right;
-    background-attachment: fixed;
+    background-attachment: fixed;   
 }
 li{ 
     text-decoration: none;
@@ -51,7 +51,7 @@ form .btn:active{
 }    
 nav form{   
     position: absolute; 
-    right:30%; 
+    right:30%;   
              
 }
 nav .icons {   

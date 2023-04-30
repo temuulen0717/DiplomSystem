@@ -22,28 +22,34 @@ a:hover{
 .left{   
     position: fixed; 
     left:0;    
-    top:17%;  
-    width:25%;  
+    top:15%;  
+    width:23%;  
     height: 100%;      
     overflow: auto; 
-    background-color: #ffffff;
+    background-color: #EEF1F4;    
 }  
-.left ul{ 
+.left ul{  
+    background-color: #fff; 
     display:flex; 
-    flex-direction: column;   
+    flex-direction: column;    
+    padding-bottom: 95%;   
+    padding-top:10%; 
+    border-radius:15px;  
+    margin-left:25px; 
+    margin-right:65px;    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  
 } 
 .left li{ 
-    display: block;  
-    margin:5px;  
-    margin-left:5%; 
-    padding-left:5%; 
+    display: felx;  
+    margin:5px;    
+    padding-left:20px; 
     padding-top:2%; 
-    width:65%;  
+    max-width:250px;  
     height: 40px; 
     border-radius: 5px;
 } 
 .left li:hover{ 
-    background-color: rgb(231, 224, 237);   
+    background-color: #ADD8E6;   
     transition: background-color 0.2s;
 }  
 #divider:hover{  
@@ -53,7 +59,7 @@ a:hover{
     color:black; 
 } 
 .left .bi{ 
-    color:silver; 
+    color:Light Black; 
     margin-right:10px;   
     margin-bottom: 3px;
 }
@@ -65,13 +71,40 @@ a:hover{
   position: relative; 
   top:40px; 
   right: 2px;
+}  
+.container-fluid{ 
+  background-color: #FDFDFE;   
+  height:70px;  
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+ }  
+.Top{    
+  z-index: 1; 
+  position: fixed; 
+  top:0; 
+  width: 100%;  
+}   
+nav form{     
+  position: absolute; 
+  right:20%;   
+  top:10px;               
 } 
-
-
+form .btn{ 
+  background-color: #ADD8E6;   
+  color: Light black; 
+}  
+form .btn:hover{ 
+  background-color:#fff;  
+  border-color: #ADD8E6; 
+  color: Light black; 
+}
+.icons{ 
+  position:absolute; 
+  right: 10px; 
+  top:10px; 
+}
 </style>
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="Top">
   <div class="container-fluid">
-    <div class="header">
     <!-- <button
         class="navbar-toggler"
         type="button"
@@ -103,7 +136,6 @@ a:hover{
           type="search"
           placeholder="Search"
           aria-label="Search"
-          name='q'
         />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
@@ -133,7 +165,7 @@ a:hover{
 {% block body %}
   <div class="left">   
     <ul> 
-      <li style="background-color: rgb(231, 224, 237)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+      <li style="background-color: #ADD8E6"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
         <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
       </svg><a href="{% url 'home' %}">Home</a></li>   
       <li id="divider"><hr></li>
