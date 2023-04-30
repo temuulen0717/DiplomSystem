@@ -142,7 +142,9 @@ def Logout(request):
 def taskView(request, id):
     proj = Project.objects.get(pro_id = id)
     tasks = Task.objects.filter(project = proj)
-    context = {'cat': proj, 'task': tasks }
+    projects = Project.objects.all().filter(pro_id=id)
+
+    context = {'cat': proj, 'task': tasks, 'project':projects }
     return render(request, 'task/task.html', context=context)
 
 #add task 
@@ -154,9 +156,11 @@ def addTask(request, id):
         task_enddate = request.POST.get('task_enddate')
         task_status = request.POST.get('task_status')
         task_file = request.POST.get('task_file')
+        task_assign = request.POST.get('task_assign')
             
         task = Task(
             task_name = task_name,
+            task_assign = task_assign,
             task_startdate = task_startdate,
             task_enddate = task_enddate,
             task_status = task_status,
@@ -183,8 +187,8 @@ def editTask(request):
 
 #update task
 
-def updateTask(request, id):
-
+def updateTask(request, id, project_id):
+    project = Project.objects.all(pro_id=project_id)
     if request.method == "POST":
         task_name = request.POST.get('task_name')
         task_startdate = request.POST.get('task_startdate')
@@ -200,8 +204,9 @@ def updateTask(request, id):
             task_status = task_status,
             task_file = task_file 
         )
+        task.project = project
         task.save()
-        return redirect('project')
+        return redirect('project' )
 
     return redirect(request, 'task/task.html')
 
@@ -242,12 +247,13 @@ def taskAdd(request, project_id):
 
 
 def Charts(request, id):
+
     proj = Project.objects.get(pro_id = id)
     tasks = Task.objects.filter(project = proj)
     fig = go.Figure(data=go.Scatter(x=[1, 3, 2], y=[4,5,6]))
     projects_data = [
         {
-            'Project': x.task_name,
+            'Task': x.id,
             'Start': x.task_startdate,
             'Finish': x.task_enddate,
             'Task': x.task_name
@@ -255,13 +261,13 @@ def Charts(request, id):
     ]
     df = pd.DataFrame(projects_data)
     fig = px.timeline(
-        df, x_start="Start", x_end="Finish", y="Project", color="Task", width=1000, height=400
+        df, x_start="Start", x_end="Finish", y="Task", color="Task", width=1000, height=400
     )
+
     fig.update_layout(
-        margin=dict(l=200, t=100, b=20),
+        margin=dict(l=0, t=0, b=0),
         yaxis=dict(showgrid=True),
         xaxis=dict(showgrid=False),
-
     )
     fig.update_yaxes(autorange="reversed")
     fig.update_traces(width=0.2)

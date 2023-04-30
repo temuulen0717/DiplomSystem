@@ -36,7 +36,7 @@ class Task(models.Model):
     task_startdate = models.DateField(null=True)
     task_enddate = models.DateField(null=True)
     task_status = models.CharField(max_length=100, choices=project_status_choice, default=NEW)
-
+    task_assign = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):

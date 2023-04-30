@@ -8,18 +8,20 @@ body {
     background: #fff;
     padding: 20px 25px;
     margin: 30px 0;
-    border-radius: 5px;
+    border-radius:5px 5px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {        
     padding-bottom: 15px;
-    background: #435d7d;
+    background: #7393B3;
     color: #fff;
     padding: 16px 30px;
     margin: -20px -25px 10px;
-    border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0; 
+    
 }
-.table-title h2 {
+.table-title h2 {    margin-top: 5px;
+
     margin: 5px 0 0;
     font-size: 24px;
 }
@@ -218,5 +220,65 @@ table.table .avatar {
     font-weight: normal;
 }
 #tasks{
-    max-width: 900px;
+    max-width: 1100px;
+}
+#top{
+    position: fixed;
+    display: flex;
+    height: 50px;
+    width: 70%;
+    left: 25%;
+    top: 37px;
+    padding-right: 100px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+#invite{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100px;
+    border-radius: 15px;
+    margin-left: 20px;
+}
+#invite a:hover{
+    text-decoration: none;
+}
+#invite a{
+    color: white;
+}
+#gantt{ 
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100px;
+    border-radius: 15px;
+    text-decoration: none;
+    background-color: #9fe2bf;
+    border-color: #9fe2bf;
+}
+#gantt a{
+    color: white;
+}
+#gantt a:hover{
+    text-decoration: none;
+}
+
+.topContainer{
+    display: flex;
+    flex-direction: row;
+}
+#logo{
+    margin-right: 10px;
+}
+
+h3{
+    margin-right: 370px;
+}
+.projectName{
+    margin-top: 11px;
+    font-weight:bold;
+    text-transform: uppercase;
+    width: 400px;
 }

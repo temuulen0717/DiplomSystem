@@ -34,9 +34,9 @@ urlpatterns = [
     path('project/<str:id>', views.taskView, name='project'),
     path('addTask/<str:id>/add/', views.addTask, name='addTask'),
     path('editTask/', views.editTask, name='editTask'),
-    path('updateTask/<str:id>', views.updateTask, name='updateTask'),
+    path('project/<str:project_id>/updateTask/<str:id>', views.updateTask, name='updateTask'),
     path('deleteTask/<str:id>', views.deleteTask, name='deleteTask'), 
-    path('task/<str:id>/gantt', views.Charts, name='chart'),
+    path('project/<str:id>/gantt', views.Charts, name='chart'),
 
 
     path('<str:project_id>/invite', views.invite_user, name='invite')
